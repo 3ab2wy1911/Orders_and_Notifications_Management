@@ -1,6 +1,5 @@
 package com.momo.orders_and_notifications_management.api.model;
 
-
 public class Customer {
     // Attributes of the customer...
     private int id;
@@ -18,7 +17,7 @@ public class Customer {
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.balance = balance;
-        this.cart = null;
+        cart = null;
     }
 
     //================================================================
@@ -76,12 +75,9 @@ public class Customer {
     }
 
     public void setCart(Cart cart) {
-        this.cart = cart;
+        cart = cart;
     }
 
     //================================================================
 
-//    public void updateCart(Order order){
-//        // TODO update the cart...
-//    }
 }
