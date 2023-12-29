@@ -1,4 +1,4 @@
-package com.moma.Orders_and_Notifications_Management.api.model;
+package com.momo.orders_and_notifications_management.api.model;
 
 
 public class Customer {
