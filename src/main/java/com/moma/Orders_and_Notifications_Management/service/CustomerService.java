@@ -1,0 +1,33 @@
+package com.moma.Orders_and_Notifications_Management.service;
+
+import com.moma.Orders_and_Notifications_Management.api.model.Customer;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+@Service
+public class CustomerService {
+    private List<Customer> customerList;
+    CustomerService(){
+        customerList = new ArrayList<>();
+
+        Customer customer1 = new Customer(1, "Mohamed Ahmed", "Faisel Giza", "3ab2wy1911@gmail.com", "01095454010", 1000);
+        Customer customer2 = new Customer(2, "Omar Mohamed", "Faisel Giza", "city@gmail.com", "010", 10000);
+        Customer customer3 = new Customer(3, "Ahmed Shabaan", "Helwan", "Sh3boo@gmail.com", "011", 200000);
+        Customer customer4 = new Customer(1, "Mohamed Ryad", "3ayat", "nmrettelephonekkam@gmail.com", "012345678911", 10.99);
+
+        customerList.addAll(Arrays.asList(customer1, customer2, customer3, customer4));
+    }
+
+    public Customer getCustomer(int id){
+        for (Customer customer : customerList){
+            if(customer.getId() == id){
+                return customer;
+            }
+        }
+        return null;
+    }
+
+}
