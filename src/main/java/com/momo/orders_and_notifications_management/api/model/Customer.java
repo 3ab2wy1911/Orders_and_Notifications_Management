@@ -1,5 +1,5 @@
-package com.moma.orders_and_notifications_management.api.model;
-import com.moma.orders_and_notifications_management.api.model.order.Order;
+package com.momo.orders_and_notifications_management.api.model;
+import com.momo.orders_and_notifications_management.api.model.order.Order;
 
 public class Customer {
     // Attributes of the customer...

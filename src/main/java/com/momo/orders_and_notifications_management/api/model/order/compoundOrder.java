@@ -1,4 +1,4 @@
-package com.moma.orders_and_notifications_management.api.model.order;
+package com.momo.orders_and_notifications_management.api.model.order;
 
 import java.util.ArrayList;
 import java.util.List;

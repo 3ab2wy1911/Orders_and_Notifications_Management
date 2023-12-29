@@ -1,4 +1,4 @@
-package com.moma.orders_and_notifications_management;
+package com.momo.orders_and_notifications_management;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
