@@ -1,4 +1,5 @@
-package com.momo.orders_and_notifications_management.api.model;
+package com.moma.orders_and_notifications_management.api.model;
+import com.moma.orders_and_notifications_management.api.model.order.Order;
 
 public class Customer {
     // Attributes of the customer...
@@ -17,7 +18,7 @@ public class Customer {
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.balance = balance;
-        cart = null;
+        cart = new Cart();
     }
 
     //================================================================
@@ -79,5 +80,8 @@ public class Customer {
     }
 
     //================================================================
+    public void updateCart(Order order){
+        cart.update(order);
+    }
 
 }

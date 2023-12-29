@@ -1,6 +1,6 @@
-package com.momo.orders_and_notifications_management.service;
+package com.moma.orders_and_notifications_management.service;
 
-import com.momo.orders_and_notifications_management.api.model.Product;
+import com.moma.orders_and_notifications_management.api.model.Product;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

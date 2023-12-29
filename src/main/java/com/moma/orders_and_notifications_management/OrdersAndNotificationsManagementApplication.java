@@ -1,4 +1,4 @@
-package com.momo.orders_and_notifications_management;
+package com.moma.orders_and_notifications_management;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

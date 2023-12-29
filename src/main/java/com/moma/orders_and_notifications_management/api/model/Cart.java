@@ -1,6 +1,6 @@
-package com.momo.orders_and_notifications_management.api.model;
+package com.moma.orders_and_notifications_management.api.model;
 
-import com.momo.orders_and_notifications_management.api.model.order.Order;
+import com.moma.orders_and_notifications_management.api.model.order.Order;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +18,12 @@ public class Cart {
 
     public List<Order> getOrderList() {
         return orderList;
+    }
+
+    //----------------------------------------------------------------
+
+    public void update(Order order){
+        orderList.add(order);
     }
 
 }

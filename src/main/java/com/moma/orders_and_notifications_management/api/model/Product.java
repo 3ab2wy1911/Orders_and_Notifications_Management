@@ -1,4 +1,4 @@
-package com.momo.orders_and_notifications_management.api.model;
+package com.moma.orders_and_notifications_management.api.model;
 
 public class Product {
     // Attributes
