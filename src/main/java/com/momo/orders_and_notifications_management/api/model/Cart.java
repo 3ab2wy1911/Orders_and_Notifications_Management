@@ -23,6 +23,14 @@ public class Cart {
     //----------------------------------------------------------------
 
     public void update(Order order){
+        int id;
+        if(orderList.isEmpty()){
+            id = 0;
+        }
+        else {
+            id = orderList.get(orderList.size()-1).getOrderId();
+        }
+        order.setOrderId(id+1);
         orderList.add(order);
     }
 

@@ -1,5 +1,6 @@
 package com.momo.orders_and_notifications_management.service;
 
+import com.momo.orders_and_notifications_management.api.model.Cart;
 import com.momo.orders_and_notifications_management.api.model.Customer;
 import com.momo.orders_and_notifications_management.api.model.order.Order;
 import org.springframework.stereotype.Service;
@@ -9,7 +10,7 @@ import java.util.List;
 
 @Service
 public class CustomerService {
-    private List<Customer> customerList;
+    private final List<Customer> customerList;
     CustomerService(){
         customerList = new ArrayList<>();
 
@@ -34,6 +35,17 @@ public class CustomerService {
     public void addOrder(Order order, int customerId){
 
         getCustomer(customerId).updateCart(order);
+    }
+
+    //
+    public Order getOrder(int customerId, int orderId){ // for printing details of order...
+        Cart cart = getCustomer(customerId).getCart();
+        for (Order order : cart.getOrderList()){
+            if (order.getOrderId() == orderId){
+                return order;
+            }
+        }
+        return null;
     }
 
 }

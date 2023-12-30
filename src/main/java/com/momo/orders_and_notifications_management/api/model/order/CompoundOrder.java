@@ -3,14 +3,14 @@ package com.momo.orders_and_notifications_management.api.model.order;
 import java.util.ArrayList;
 import java.util.List;
 
-public class compoundOrder extends Order {
+public class CompoundOrder extends Order {
     // Attributes for compound order.
-    List<singleOrder> orderList = new ArrayList<>();
+    List<SingleOrder> orderList = new ArrayList<>();
 
     //----------------------------------------------------------------
 
 
-    public compoundOrder(int customerId, List<singleOrder> orderList) {
+    public CompoundOrder(int customerId, List<SingleOrder> orderList) {
         this.customerId = customerId;
         this.orderList = orderList;
     }
@@ -18,11 +18,11 @@ public class compoundOrder extends Order {
     //----------------------------------------------------------------
 
 
-    public List<singleOrder> getOrderList() {
+    public List<SingleOrder> getOrderList() {
         return orderList;
     }
 
-    public void setOrderList(List<singleOrder> orderList) {
+    public void setOrderList(List<SingleOrder> orderList) {
         this.orderList = orderList;
     }
 }

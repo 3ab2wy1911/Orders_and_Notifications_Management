@@ -36,7 +36,14 @@ public class ProductService {
         return list;
     }
 
-
-
+    //----------------------------------------------------------------
+        public Product getProduct(int id){
+            for(Product product : productList){
+                if(product.getId() == id){
+                    return product;
+                }
+            }
+            return null;
+        }
 
 }

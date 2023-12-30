@@ -1,19 +1,19 @@
 package com.momo.orders_and_notifications_management.api.model.order;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.momo.orders_and_notifications_management.api.model.Product;
 
-public class singleOrder extends Order{
+public class SingleOrder extends Order{
     // Attributes for single order only...
-    List <Order> orderList;
+    Product product;
 
     //----------------------------------------------------------------
-    public singleOrder() {
-        orderList = new ArrayList<Order>();
+    public SingleOrder() {
+        this.product = null;
         this.customerId = -1;
     }
     //----------------------------------------------------------------
-    public singleOrder(int customerId){
+    public SingleOrder(int customerId, Product product){
+        this.product = product;
         this.customerId = customerId;
     }
     //----------------------------------------------------------------
