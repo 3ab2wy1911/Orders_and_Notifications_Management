@@ -10,11 +10,13 @@ public class SingleOrder extends Order{
     public SingleOrder() {
         this.product = null;
         this.customerId = -1;
+        this.type = "Single Order";
     }
     //----------------------------------------------------------------
     public SingleOrder(int customerId, Product product){
         this.product = product;
         this.customerId = customerId;
+        this.type = "Single Order";
     }
     //----------------------------------------------------------------
 

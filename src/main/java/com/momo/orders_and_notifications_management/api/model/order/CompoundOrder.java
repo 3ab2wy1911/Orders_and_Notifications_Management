@@ -13,6 +13,7 @@ public class CompoundOrder extends Order {
     public CompoundOrder(int customerId, List<SingleOrder> orderList) {
         this.customerId = customerId;
         this.orderList = orderList;
+        this.type = "Compound Order";
     }
 
     //----------------------------------------------------------------
