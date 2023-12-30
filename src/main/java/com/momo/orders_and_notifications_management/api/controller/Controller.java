@@ -71,8 +71,8 @@ public class Controller {
         if(order == null){
             return "Order not found";
         }
-        return "Order details\n";
+        return "Order details\n Product Name : " + productService.getProduct(orderId).getName()+".\nOrder Type : " + order.getType()+".\nPrice : " +
+                productService.getProduct(orderId).getPrice()+".\n";
     }
-
-
+    
 }
