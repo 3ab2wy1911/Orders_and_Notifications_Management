@@ -51,6 +51,8 @@ public class Controller {
         return productService.getProducts();
     }
 
+    //-----------------
+
     @PostMapping("/addOrder")
     public String addOrder(@RequestParam Integer productId){
         Product product = productService.getProduct(productId);
@@ -61,6 +63,8 @@ public class Controller {
         customerService.addOrder(order, customer.getId());
         return "Order added successfully with id : "+ order.getOrderId();
     }
+
+    //-----------------
 
     @GetMapping("/printOrderDetails")
     public String getOrderDetails(@RequestParam Integer orderId){
@@ -74,5 +78,8 @@ public class Controller {
         return "Order details\n Product Name : " + productService.getProduct(orderId).getName()+".\nOrder Type : " + order.getType()+".\nPrice : " +
                 productService.getProduct(orderId).getPrice()+".\n";
     }
-    
+
+    //-----------------
+
+
 }
