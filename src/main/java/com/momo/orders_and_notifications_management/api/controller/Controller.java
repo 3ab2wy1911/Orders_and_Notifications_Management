@@ -8,6 +8,7 @@ import com.momo.orders_and_notifications_management.api.model.order.SingleOrder;
 import com.momo.orders_and_notifications_management.service.CompoundOrderRequest;
 import com.momo.orders_and_notifications_management.service.CustomerService;
 import com.momo.orders_and_notifications_management.api.model.Customer;
+import com.momo.orders_and_notifications_management.service.OrderService;
 import com.momo.orders_and_notifications_management.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,14 +21,16 @@ public class Controller {
 
     private final CustomerService customerService;
     private final ProductService productService;
+    private final OrderService orderService;
     private Customer customer;
 
     //----------------------------------------------------------------
 
     @Autowired
-    public Controller(CustomerService customerService, ProductService productService) {
+    public Controller(CustomerService customerService, ProductService productService, OrderService orderService) {
         this.customerService = customerService;
         this.productService = productService;
+        this.orderService = orderService;
     }
 
     //----------------------------------------------------------------
@@ -97,8 +100,7 @@ public class Controller {
         if(order == null){
             return "Order not found";
         }
-        return "Order details\n Product Name : " + productService.getProduct(orderId).getName()+".\nOrder Type : " + order.getType()+".\nPrice : " +
-                productService.getProduct(orderId).getPrice()+".\n";
+        return order.print();
     }
 
     //-----------------
