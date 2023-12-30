@@ -2,16 +2,18 @@ package com.momo.orders_and_notifications_management.api.controller;
 
 
 import com.momo.orders_and_notifications_management.api.model.Product;
+import com.momo.orders_and_notifications_management.api.model.order.CompoundOrder;
 import com.momo.orders_and_notifications_management.api.model.order.Order;
 import com.momo.orders_and_notifications_management.api.model.order.SingleOrder;
+import com.momo.orders_and_notifications_management.service.CompoundOrderRequest;
 import com.momo.orders_and_notifications_management.service.CustomerService;
 import com.momo.orders_and_notifications_management.api.model.Customer;
 import com.momo.orders_and_notifications_management.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 public class Controller {
@@ -53,8 +55,8 @@ public class Controller {
 
     //-----------------
 
-    @PostMapping("/addOrder")
-    public String addOrder(@RequestParam Integer productId){
+    @PostMapping("/addSingleOrder")
+    public String addSingleOrder(@RequestParam Integer productId){
         Product product = productService.getProduct(productId);
         if(product == null){
             return "Product not found !!";
@@ -64,6 +66,26 @@ public class Controller {
         return "Order added successfully with id : "+ order.getOrderId();
     }
 
+    //-----------------
+    @PostMapping("/addCompoundOrder")
+    public String addCompoundOrder(@RequestBody CompoundOrderRequest requestBody) {
+        List<SingleOrder> orders = new ArrayList<>();
+        for (int i = 0; i < requestBody.getProductIds().size(); i++) {
+            Product product = productService.getProduct(requestBody.getProductIds().get(i));
+            if (product == null) {
+                return "Product not found for id: " + requestBody.getProductIds().get(i);
+            }
+            Customer tmpCustomer = customerService.getCustomer(requestBody.getCustomerIds().get(i));
+            if(tmpCustomer == null) {
+                return "Customer not found for id: " + requestBody.getCustomerIds().get(i);
+            }
+            orders.add(new SingleOrder(requestBody.getCustomerIds().get(i),product));
+        }
+        Order order = new CompoundOrder(customer.getId(), orders);
+        customerService.addOrder(order, customer.getId());
+
+        return "Compound Order added successfully with id : " + order.getOrderId();
+    }
     //-----------------
 
     @GetMapping("/printOrderDetails")
