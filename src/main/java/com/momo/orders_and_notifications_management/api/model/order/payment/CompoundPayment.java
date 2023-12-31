@@ -10,7 +10,7 @@ public class CompoundPayment implements Payment{
 
     @Override
     public String pay(Order compoundOrder) {
-        if (compoundOrder.getType().equals("Paid")){
+        if (compoundOrder.getPaymentStatus().equals("Paid")){
             return  "Order has been paid !!!";
         }
         List<Order> orders = compoundOrder.getOrderList();
@@ -39,6 +39,7 @@ public class CompoundPayment implements Payment{
             order.setPaymentStatus("Paid");
             msg.append("The remaining balance for customer : ").append(customer.getName()).append(" is ").append(customer.getBalance()).append(".\n");
         }
+        compoundOrder.setPaymentStatus("Paid");
         return msg.toString();
     }
 }

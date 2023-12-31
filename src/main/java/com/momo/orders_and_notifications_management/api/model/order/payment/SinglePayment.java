@@ -7,7 +7,7 @@ public class SinglePayment implements Payment{
 
     @Override
     public String pay(Order order) {
-        if (order.getType().equals("Paid")){
+        if (order.getPaymentStatus().equals("Paid")){
             return  "Order has been paid !!!";
         }
         Customer customer = order.getCustomer();

@@ -16,9 +16,9 @@ public class PrintCompoundOrder implements Print{
                     (".\nOrder Fees : ").append
                     (singleOrder.getProduct().getPrice()).append
                     (".\nOrder Status : ").append
-                    (singleOrder.getPaymentStatus()).append
+                    (order.getPaymentStatus()).append
                     (" ").append
-                    (order.getShipmentStatus()).append
+                    (singleOrder.getShipmentStatus()).append
                     (".\n");
         }
         return result.toString();
