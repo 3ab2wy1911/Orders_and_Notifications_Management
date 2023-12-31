@@ -102,6 +102,10 @@ public class Controller {
         }
         return order.print();
     }
+    @PostMapping("/{customerId}/shipOrder/{orderId}")
+    public String shipOrder(@PathVariable int customerId, @PathVariable int orderId) {
+        return customerService.shiporder(customerId, orderId);
+    }
 
     //----------------------------------------------------------------
     @PostMapping(value = "/AddAccount")
