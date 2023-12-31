@@ -143,6 +143,17 @@ public class Controller {
         return order.ship();
     }
     //----------------------------------------------------------------
+    @PostMapping("/cancelOrder") // Cancel the order...
+    public String CancelOrder(@RequestParam Integer orderId){
+        if (customer == null) {
+            return "Please Sign In First!!";
+        }
+        Order order = customerService.getOrder(customer.getId(), orderId);
+        if (order == null) {
+            return "Order not found";
+        }
+        return order.cancel();
+    }
 
     //================================================================
     // Notification System & Statistics....

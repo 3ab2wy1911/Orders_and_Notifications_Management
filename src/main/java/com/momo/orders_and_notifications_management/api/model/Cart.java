@@ -33,16 +33,8 @@ public class Cart {
         order.setOrderId(id+1);
         orderList.add(order);
     }
-    public void deletFromCart(Order order){
-        int id;
-        if(orderList.isEmpty()){
-            id = 0;
-        }
-        else {
-            id = orderList.get(orderList.size()-1).getOrderId();
-        }
-        order.setOrderId(id+1);
-        orderList.remove(id);
+    public void removeOrder(Order order){
+        orderList.remove(order);
     }
 
 }

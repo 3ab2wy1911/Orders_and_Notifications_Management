@@ -2,6 +2,7 @@ package com.momo.orders_and_notifications_management.api.model.order;
 
 import com.momo.orders_and_notifications_management.api.model.Customer;
 import com.momo.orders_and_notifications_management.api.model.Product;
+import com.momo.orders_and_notifications_management.api.model.order.cancelation.CancelOrder;
 import com.momo.orders_and_notifications_management.api.model.order.payment.Payment;
 import com.momo.orders_and_notifications_management.api.model.order.print_order_details.Print;
 import com.momo.orders_and_notifications_management.api.model.order.shipment.Ship;
@@ -22,6 +23,7 @@ public abstract class Order {
     Print print;
     Payment payment;
     Ship ship;
+    CancelOrder cancelOrder;
 
     //----------------------------------------------------------------
     public Product getProduct() {
@@ -94,7 +96,12 @@ public abstract class Order {
     public String pay(){
         return payment.pay(this);
     }
+    //-----------------------------------------------------------------
     public String ship(){
         return ship.ship(this);
+    }
+    //----------------------------------------------------------------
+    public String cancel(){
+        return cancelOrder.cancel(this);
     }
 }

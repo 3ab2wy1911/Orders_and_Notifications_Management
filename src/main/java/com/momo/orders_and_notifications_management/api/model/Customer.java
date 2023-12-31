@@ -9,7 +9,7 @@ public class Customer {
     private String email;
     private String phoneNumber;
     private double balance;
-    private Cart cart;
+    private final Cart cart;
 
     public Customer(int id, String name, String address, String email, String phoneNumber, double balance) {
         this.id = id;
@@ -83,5 +83,8 @@ public class Customer {
     public void updateCart(Order order){
         cart.update(order);
     }
-
+    //================================================================
+    public void removeOrder(Order order){
+        cart.removeOrder(order);
+    }
 }
