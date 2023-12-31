@@ -2,6 +2,7 @@ package com.momo.orders_and_notifications_management.api.model.order;
 
 import com.momo.orders_and_notifications_management.api.model.Customer;
 import com.momo.orders_and_notifications_management.api.model.Product;
+import com.momo.orders_and_notifications_management.api.model.order.payment.SinglePayment;
 import com.momo.orders_and_notifications_management.api.model.order.print_order_details.PrintSingleOrder;
 
 public class SingleOrder extends Order{
@@ -12,6 +13,7 @@ public class SingleOrder extends Order{
         this.product = product;
         this.type = "Single Order";
         this.print = new PrintSingleOrder();
+        this.payment = new SinglePayment();
     }
     //----------------------------------------------------------------
 

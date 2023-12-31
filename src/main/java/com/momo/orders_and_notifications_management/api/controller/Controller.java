@@ -116,6 +116,19 @@ public class Controller {
     }
     //================================================================
     // Order Payment & Shipment
+
+    @GetMapping("/pay")   // Print the order details...
+    public String payOrder(@RequestParam Integer orderId) {
+        if (customer == null) {
+            return "Please Sign In First!!";
+        }
+        Order order = customerService.getOrder(customer.getId(), orderId);
+        if (order == null) {
+            return "Order not found";
+        }
+        return order.pay();
+    }
+    //----------------------------------------------------------------
     @PostMapping("/{customerId}/shipOrder/{orderId}")
     public String shipOrder(@PathVariable int customerId, @PathVariable int orderId) {
         return customerService.shiporder(customerId, orderId);
