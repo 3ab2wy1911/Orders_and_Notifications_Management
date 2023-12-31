@@ -4,6 +4,6 @@ public class ShipmentTemplate extends Template{
 
     @Override
     public String forumulateMessage(String name, String product) {
-        return "Dear " + name + ", your booking of the item " + product + "is shipped\n";
+        return "Dear " + name + ", your booking " + product + " is confirmed\n";
     }
 }

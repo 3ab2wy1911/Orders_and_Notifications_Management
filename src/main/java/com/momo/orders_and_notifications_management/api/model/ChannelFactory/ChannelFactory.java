@@ -8,7 +8,7 @@ import com.momo.orders_and_notifications_management.api.model.TemplateStrategy.S
 public class ChannelFactory extends ChannelAndLangFac{
 
     @Override
-    public Channel createChannel(String type) {
+    public Channel channelCreator(String type) {
         if (type.equals("SMS")){
             SMS sms = new SMS();
             sms.setStrategy(new ShipmentTemplate());

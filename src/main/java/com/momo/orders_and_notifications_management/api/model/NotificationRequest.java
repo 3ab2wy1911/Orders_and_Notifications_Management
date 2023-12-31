@@ -3,24 +3,23 @@ package com.momo.orders_and_notifications_management.api.model;
 public class NotificationRequest {
 
 
-    private String productName;
-    private String customerName;
+    int orderId;
     private String typeOfChannel;
 
-    public String getProductName() {
-        return productName;
+    public NotificationRequest(String productName, int orderId) {
+        this.orderId = orderId;
+        this.typeOfChannel = typeOfChannel;
+    }
+    public NotificationRequest(){
+
     }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
+    public int getOrderId() {
+        return orderId;
     }
 
-    public String getCustomerName() {
-        return customerName;
-    }
-
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
     }
 
     public String getTypeOfChannel() {

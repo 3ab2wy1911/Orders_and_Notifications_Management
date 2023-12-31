@@ -2,7 +2,7 @@ package com.momo.orders_and_notifications_management.api.model.Channel;
 
 import com.momo.orders_and_notifications_management.api.model.TemplateStrategy.Template;
 
-public abstract class Channel {
+public class Channel {
     protected String name;
     protected String productName;
     private String message;
@@ -27,12 +27,8 @@ public abstract class Channel {
         return templateStrategy;
     }
 
-    public void setTemplateStrategy(Template templateStrategy) {
-        this.templateStrategy = templateStrategy;
-    }
-
     public void setMessage(String customerName, String productName){
-        this.message = "Dear " + customerName + ", your booking of the item " + productName + "is shipped\n";
+        this.message = "Dear " + customerName + ", your booking of the item " + productName + " is confirmed\n";
     }
     public String getMessage(){
         return message;

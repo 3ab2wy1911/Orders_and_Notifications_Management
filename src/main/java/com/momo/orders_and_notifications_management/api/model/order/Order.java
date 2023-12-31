@@ -12,8 +12,7 @@ import java.util.List;
 
 public abstract class Order {
     // common attributes
-    Customer customer
-            ;
+    Customer customer;
     int orderId;
     String type;    // Single , Compound...
     Product product;
@@ -104,4 +103,5 @@ public abstract class Order {
     public String cancel(){
         return cancelOrder.cancel(this);
     }
+
 }
