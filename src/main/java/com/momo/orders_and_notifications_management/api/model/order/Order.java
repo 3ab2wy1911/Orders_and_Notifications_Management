@@ -4,6 +4,7 @@ import com.momo.orders_and_notifications_management.api.model.Customer;
 import com.momo.orders_and_notifications_management.api.model.Product;
 import com.momo.orders_and_notifications_management.api.model.order.payment.Payment;
 import com.momo.orders_and_notifications_management.api.model.order.print_order_details.Print;
+import com.momo.orders_and_notifications_management.api.model.order.shipment.Ship;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +21,9 @@ public abstract class Order {
     String shipmentStatus; // Default -> "still not shipped..."
     Print print;
     Payment payment;
+
+    Ship sha;
+
     //----------------------------------------------------------------
     public Product getProduct() {
         return product;
@@ -90,5 +94,8 @@ public abstract class Order {
     //-----------------------------------------------------------------
     public String pay(){
         return payment.pay(this);
+    }
+    public String shippp(){
+        return sha.ship(this);
     }
 }

@@ -1,8 +1,8 @@
-package com.momo.orders_and_notifications_management.service.shipment;
+package com.momo.orders_and_notifications_management.api.model.order.shipment;
 
 import com.momo.orders_and_notifications_management.api.model.Customer;
 import com.momo.orders_and_notifications_management.api.model.order.Order;
 
 public interface Ship {
-    void ship (Customer customer,Order order);
+    String ship (Order order);
 }

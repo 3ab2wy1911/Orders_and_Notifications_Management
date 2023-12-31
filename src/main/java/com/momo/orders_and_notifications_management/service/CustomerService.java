@@ -3,8 +3,8 @@ package com.momo.orders_and_notifications_management.service;
 import com.momo.orders_and_notifications_management.api.model.Cart;
 import com.momo.orders_and_notifications_management.api.model.Customer;
 import com.momo.orders_and_notifications_management.api.model.order.Order;
-import com.momo.orders_and_notifications_management.service.shipment.Ship;
-import com.momo.orders_and_notifications_management.service.shipment.SingleShapmint;
+import com.momo.orders_and_notifications_management.api.model.order.shipment.Ship;
+import com.momo.orders_and_notifications_management.api.model.order.shipment.SingleShapmint;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -58,28 +58,28 @@ public class CustomerService {
         getCustomer(customerId).updateCart(order);
     }
     //----------------------------------------------------------------
-    public String shiporder(int customerID,int orderID ) {
-        Cart cart = getCustomer(customerID).getCart();
-        for (Order order : cart.getOrderList()) {
-            if (order.getOrderId() == orderID) {
-                if (order.getType().equals("Single Order")) {
-//                    getCustomer(order.getCustomerId()).setBalance(this.getCustomer(orderID).getBalance() - 30);
+//    public String shiporder(int customerID,int orderID ) {
+//        Cart cart = getCustomer(customerID).getCart();
+//        for (Order order : cart.getOrderList()) {
+//            if (order.getOrderId() == orderID) {
+//                if (order.getType().equals("Single Order")) {
+////                    getCustomer(order.getCustomerId()).setBalance(this.getCustomer(orderID).getBalance() - 30);
+////                    cart.deletFromCart(order);
+////                    return " your order is shipped successfully " +
+////                            "and your current balance after paying shipping fees is " + getCustomer(order.getCustomerId()).getBalance();
+//                    Ship sh = new SingleShapmint();
+//                    sh.ship(this.getCustomer(customerID),order);
+//                    double newBalance = order.getCustomer().getBalance();
 //                    cart.deletFromCart(order);
 //                    return " your order is shipped successfully " +
-//                            "and your current balance after paying shipping fees is " + getCustomer(order.getCustomerId()).getBalance();
-                    Ship sh = new SingleShapmint();
-                    sh.ship(this.getCustomer(customerID),order);
-                    double newBalance = order.getCustomer().getBalance();
-                    cart.deletFromCart(order);
-                    return " your order is shipped successfully " +
-                            "and your current balance after paying shipping fees is " + newBalance;
-
-                }
-            }
-        }
-        return "No order with this id ";
-
-    }
+//                            "and your current balance after paying shipping fees is " + newBalance;
+//
+//                }
+//            }
+//        }
+//        return "No order with this id ";
+//
+//    }
 
     //----------------------------------------------------------------
 
