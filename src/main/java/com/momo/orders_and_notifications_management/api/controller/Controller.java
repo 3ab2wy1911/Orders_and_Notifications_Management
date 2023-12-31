@@ -10,7 +10,6 @@ import com.momo.orders_and_notifications_management.service.CompoundOrderRequest
 import com.momo.orders_and_notifications_management.service.CustomerService;
 import com.momo.orders_and_notifications_management.api.model.Customer;
 import com.momo.orders_and_notifications_management.service.NotificationService;
-import com.momo.orders_and_notifications_management.service.order.OrderService;
 import com.momo.orders_and_notifications_management.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -23,16 +22,14 @@ public class Controller {
 
     private final CustomerService customerService;
     private final ProductService productService;
-    private final OrderService orderService;
     private final NotificationService notificationService;
     private Customer customer;
     //----------------------------------------------------------------
 
     @Autowired
-    public Controller(CustomerService customerService, ProductService productService, OrderService orderService, NotificationService notificationService) {
+    public Controller(CustomerService customerService, ProductService productService, NotificationService notificationService) {
         this.customerService = customerService;
         this.productService = productService;
-        this.orderService = orderService;
         this.notificationService = notificationService;
     }
 
@@ -162,6 +159,14 @@ public class Controller {
     // Notification System & Statistics....
     @PostMapping("/notification")
     public String notification(@RequestBody NotificationRequest notificationRequest){
-        return notificationService.createChannel(notificationRequest, this.customer);
+        if (customer == null){
+            return "Please sign in first...";
+        }
+
+        Order order = customerService.getOrder(customer.getId(), notificationRequest.getOrderId());
+        if (order == null){
+            return "Dear " + customer.getName() + " no order found at this id " + notificationRequest.getOrderId();
+        }
+        return notificationService.createChannel(customer, order, notificationRequest);
     }
 }

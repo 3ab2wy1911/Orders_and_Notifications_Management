@@ -4,10 +4,10 @@ import com.momo.orders_and_notifications_management.api.model.order.Order;
 public class Customer {
     // Attributes of the customer...
     private int id;
-    private String name;
-    private String address;
-    private String email;
-    private String phoneNumber;
+    private final String name;
+    private final String address;
+    private final String email;
+    private final String phoneNumber;
     private double balance;
     private final Cart cart;
 
@@ -35,32 +35,15 @@ public class Customer {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getAddress() {
         return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
     }
 
     public String getEmail() {
         return email;
     }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getPhoneNumber() {
         return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
     }
 
     public double getBalance() {
@@ -73,10 +56,6 @@ public class Customer {
 
     public Cart getCart() {
         return cart;
-    }
-
-    public void setCart(Cart cart) {
-        cart = cart;
     }
 
     //================================================================

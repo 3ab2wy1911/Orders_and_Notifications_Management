@@ -4,12 +4,8 @@ public class NotificationRequest {
 
 
     int orderId;
-    private String typeOfChannel;
+    private String typeOfChannel="";
 
-    public NotificationRequest(String productName, int orderId) {
-        this.orderId = orderId;
-        this.typeOfChannel = typeOfChannel;
-    }
     public NotificationRequest(){
 
     }
@@ -18,15 +14,8 @@ public class NotificationRequest {
         return orderId;
     }
 
-    public void setOrderId(int orderId) {
-        this.orderId = orderId;
-    }
-
     public String getTypeOfChannel() {
         return typeOfChannel;
     }
 
-    public void setTypeOfChannel(String typeOfChannel) {
-        this.typeOfChannel = typeOfChannel;
-    }
 }

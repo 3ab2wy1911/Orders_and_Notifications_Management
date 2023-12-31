@@ -1,10 +1,10 @@
 package com.momo.orders_and_notifications_management.api.model.Channel;
 
 import com.momo.orders_and_notifications_management.api.model.TemplateStrategy.Template;
+import com.momo.orders_and_notifications_management.api.model.order.Order;
 
 public class Channel {
     protected String name;
-    protected String productName;
     private String message;
     protected Template templateStrategy;
     public String getName() {
@@ -15,20 +15,18 @@ public class Channel {
         this.name = name;
     }
 
-    public String getProductName() {
-        return productName;
-    }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
-    }
-
-    public Template getTemplateStrategy() {
-        return templateStrategy;
-    }
-
-    public void setMessage(String customerName, String productName){
-        this.message = "Dear " + customerName + ", your booking of the item " + productName + " is confirmed\n";
+    public void setMessage(String customerName, Order order){
+        if (order.getType().equals("Single Order")){
+            this.message = "Dear " + customerName + ", your booking of the item " + order.getProduct().getName() + " is confirmed\n";
+        }
+        else{
+            StringBuilder msg = new StringBuilder();
+            for (Order singleOrder : order.getOrderList()) {
+                msg.append(singleOrder.getProduct().getName()).append(" for customer : ").append(singleOrder.getCustomer().getName()).append("\n");
+            }
+            this.message = "Dear " + customerName + ", your booking of the items : \n"+msg;
+        }
     }
     public String getMessage(){
         return message;
