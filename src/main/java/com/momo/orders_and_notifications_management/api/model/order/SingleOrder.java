@@ -7,12 +7,6 @@ import com.momo.orders_and_notifications_management.api.model.order.print_order_
 public class SingleOrder extends Order{
 
     //----------------------------------------------------------------
-    public SingleOrder() {
-        super();
-        this.product = null;
-        this.type = "Single Order";
-    }
-    //----------------------------------------------------------------
     public SingleOrder(Customer customer, Product product){
         super(customer);
         this.product = product;

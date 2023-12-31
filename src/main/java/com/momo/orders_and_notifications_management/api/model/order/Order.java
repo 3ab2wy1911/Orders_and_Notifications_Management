@@ -30,10 +30,6 @@ public abstract class Order {
         return orderList;
     }
 
-    public void setOrderList(List<Order> orderList) {
-        this.orderList = orderList;
-    }
-
     public String getPaymentStatus() {
         return paymentStatus;
     }
@@ -70,9 +66,6 @@ public abstract class Order {
         this.shipmentStatus = shipmentStatus;
     }
 
-    public void setType(String type) {
-        this.type = type;
-    }
 
     //----------------------------------------------------------------
     public Customer getCustomer() {
