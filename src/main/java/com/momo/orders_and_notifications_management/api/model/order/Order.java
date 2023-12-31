@@ -21,8 +21,7 @@ public abstract class Order {
     String shipmentStatus; // Default -> "still not shipped..."
     Print print;
     Payment payment;
-
-    Ship sha;
+    Ship ship;
 
     //----------------------------------------------------------------
     public Product getProduct() {
@@ -95,7 +94,7 @@ public abstract class Order {
     public String pay(){
         return payment.pay(this);
     }
-    public String shippp(){
-        return sha.ship(this);
+    public String ship(){
+        return ship.ship(this);
     }
 }

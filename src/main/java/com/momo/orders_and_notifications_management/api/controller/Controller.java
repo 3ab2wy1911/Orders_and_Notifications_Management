@@ -129,6 +129,8 @@ public class Controller {
         return order.pay();
     }
 
+    //----------------------------------------------------------------
+
     @GetMapping("/shiporder")   // Print the order details...
     public String ShopOrder(@RequestParam Integer orderId) {
         if (customer == null) {
@@ -138,15 +140,10 @@ public class Controller {
         if (order == null) {
             return "Order not found";
         }
-        return order.shippp();
+        return order.ship();
     }
     //----------------------------------------------------------------
-//    @PostMapping("/{customerId}/shipOrder/{orderId}")
-//    public String shipOrder(@PathVariable int customerId, @PathVariable int orderId) {
-//        return customerService.shiporder(customerId, orderId);
-//    }
 
-    //----------------------------------------------------------------
     //================================================================
     // Notification System & Statistics....
 

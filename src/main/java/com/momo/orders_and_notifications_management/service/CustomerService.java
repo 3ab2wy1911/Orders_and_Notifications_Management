@@ -3,8 +3,6 @@ package com.momo.orders_and_notifications_management.service;
 import com.momo.orders_and_notifications_management.api.model.Cart;
 import com.momo.orders_and_notifications_management.api.model.Customer;
 import com.momo.orders_and_notifications_management.api.model.order.Order;
-import com.momo.orders_and_notifications_management.api.model.order.shipment.Ship;
-import com.momo.orders_and_notifications_management.api.model.order.shipment.SingleShapmint;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Arrays;
