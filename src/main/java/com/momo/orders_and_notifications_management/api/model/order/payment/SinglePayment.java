@@ -7,6 +7,9 @@ public class SinglePayment implements Payment{
 
     @Override
     public String pay(Order order) {
+        if (order.getType().equals("Paid")){
+            return  "Order has been paid !!!";
+        }
         Customer customer = order.getCustomer();
         if(customer.getBalance() < order.getProduct().getPrice()){
             return "Insufficient Balance to do the operation !!! Payment Failed !!!";
