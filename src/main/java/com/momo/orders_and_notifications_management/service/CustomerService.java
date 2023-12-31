@@ -14,8 +14,6 @@ import java.util.List;
 public class CustomerService {
     private final List<Customer> customerList;
 
-    private final List<Customer> customerAccountsList;
-
     CustomerService(){
         customerList = new ArrayList<>();
 
@@ -25,12 +23,12 @@ public class CustomerService {
         Customer customer4 = new Customer(4, "Mohamed Ryad", "3ayat", "nmrettelephonekkam@gmail.com", "012345678911", 10.99);
 
         customerList.addAll(Arrays.asList(customer1, customer2, customer3, customer4));
-
-
-        customerAccountsList = new ArrayList<>();
     }
 
-    public Customer getCustomer(int id){
+    //----------------------------------------------------------------
+
+
+    public Customer getCustomer(int id){    // return the customer with id ... Like sign in...
         for (Customer customer : customerList){
             if(customer.getId() == id){
                 return customer;
@@ -40,10 +38,26 @@ public class CustomerService {
     }
 
     //----------------------------------------------------------------
-    public void addOrder(Order order, int customerId){
+
+    //    add this account to CustomerAccountList
+    public String addCustomerAccount(Customer customer){
+        // Check if a customer with the given ID already exists
+        for (Customer existingCustomer : customerList) {
+            if (existingCustomer.getId() == customer.getId()) {
+                return "Customer with ID " + customer.getId() + " already exists.";
+            }
+        }
+        // If the customer ID is unique, add the customer to the list
+        customerList.add(customer);
+        return "Customer Account Added Successfully";
+    }
+
+    //----------------------------------------------------------------
+    public void addOrder(Order order, int customerId){  // Add an order to the cart...
 
         getCustomer(customerId).updateCart(order);
     }
+    //----------------------------------------------------------------
     public String shiporder(int customerID,int orderID ) {
         Cart cart = getCustomer(customerID).getCart();
         for (Order order : cart.getOrderList()) {
@@ -55,7 +69,7 @@ public class CustomerService {
 //                            "and your current balance after paying shipping fees is " + getCustomer(order.getCustomerId()).getBalance();
                     Ship sh = new SingleShapmint();
                     sh.ship(this.getCustomer(customerID),order);
-                    double newBalance = getCustomer(order.getCustomerId()).getBalance();
+                    double newBalance = order.getCustomer().getBalance();
                     cart.deletFromCart(order);
                     return " your order is shipped successfully " +
                             "and your current balance after paying shipping fees is " + newBalance;
@@ -67,6 +81,7 @@ public class CustomerService {
 
     }
 
+    //----------------------------------------------------------------
 
     //
     public Order getOrder(int customerId, int orderId){ // for printing details of order...
@@ -80,32 +95,5 @@ public class CustomerService {
     }
 
     //----------------------------------------------------------------
-
-
-//    add this account to CustomerAccountList
-    public String addCustomerAccount(Customer customer){
-            // Check if a customer with the given ID already exists
-            for (Customer existingCustomer : customerAccountsList) {
-                if (existingCustomer.getId() == customer.getId()) {
-                    return "Customer with ID " + customer.getId() + " already exists.";
-                }
-            }
-            // If the customer ID is unique, add the customer to the list
-        customerAccountsList.add(customer);
-            return "Customer Account Added Successfully";
-        }
-
-    //----------------------------------------------------------------
-
-//    function to search for this customer account ,return this customer to print it
-    public Customer getCustomerAccount(int AccountId){
-        for (Customer c : customerAccountsList){
-            if(c.getId() == AccountId){
-                return c;
-            }
-        }
-        return null;
-    }
-
 
 }

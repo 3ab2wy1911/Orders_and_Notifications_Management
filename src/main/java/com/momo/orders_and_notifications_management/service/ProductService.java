@@ -14,7 +14,7 @@ public class ProductService {
     //----------------------------------------------------------------
 
     public ProductService() {
-        productList = new ArrayList<Product>();
+        productList = new ArrayList<>();
 
         Product product1 = new Product(1,"Dell G15 Laptop",20000);
         Product product2 = new Product(2,"Spaghetti Packet",30);
@@ -28,16 +28,16 @@ public class ProductService {
     }
 
     //----------------------------------------------------------------
-    public String getProducts(){
-        String list = "Available Products :\n";
+    public String getProducts(){    // Printing Available products...
+        StringBuilder list = new StringBuilder("Available Products :\n");
         for (Product product : productList){
-            list += "Product Id : "+product.getId() +"\tName: " + product.getName() + "\tPrice : "+product.getPrice() +'\n';
+            list.append("Product Id : ").append(product.getId()).append("\tName: ").append(product.getName()).append("\tPrice : ").append(product.getPrice()).append('\n');
         }
-        return list;
+        return list.toString();
     }
 
     //----------------------------------------------------------------
-        public Product getProduct(int id){
+        public Product getProduct(int id){  // return a single product with id ... used for Placement an order or printing order info..
             for(Product product : productList){
                 if(product.getId() == id){
                     return product;

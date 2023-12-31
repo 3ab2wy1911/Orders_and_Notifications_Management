@@ -1,5 +1,6 @@
 package com.momo.orders_and_notifications_management.api.model.order;
 
+import com.momo.orders_and_notifications_management.api.model.Customer;
 import com.momo.orders_and_notifications_management.api.model.order.print_order_details.PrintCompoundOrder;
 
 import java.util.ArrayList;
@@ -7,26 +8,26 @@ import java.util.List;
 
 public class CompoundOrder extends Order {
     // Attributes for compound order.
-    List<SingleOrder> orderList = new ArrayList<>();
 
     //----------------------------------------------------------------
 
 
-    public CompoundOrder(int customerId, List<SingleOrder> orderList) {
-        this.customerId = customerId;
+    public CompoundOrder(Customer customer, List<Order> orderList) {
+        super(customer);
         this.orderList = orderList;
         this.type = "Compound Order";
-        this.printDetails = new PrintCompoundOrder();
+        this.product = null;
+        this.print = new PrintCompoundOrder();
     }
 
     //----------------------------------------------------------------
 
 
-    public List<SingleOrder> getOrderList() {
+    public List<Order> getOrderList() {
         return orderList;
     }
 
-    public void setOrderList(List<SingleOrder> orderList) {
+    public void setOrderList(List<Order> orderList) {
         this.orderList = orderList;
     }
 }

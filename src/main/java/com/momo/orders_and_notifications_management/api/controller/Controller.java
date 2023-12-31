@@ -8,7 +8,7 @@ import com.momo.orders_and_notifications_management.api.model.order.SingleOrder;
 import com.momo.orders_and_notifications_management.service.CompoundOrderRequest;
 import com.momo.orders_and_notifications_management.service.CustomerService;
 import com.momo.orders_and_notifications_management.api.model.Customer;
-import com.momo.orders_and_notifications_management.service.OrderService;
+import com.momo.orders_and_notifications_management.service.order.OrderService;
 import com.momo.orders_and_notifications_management.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -33,10 +33,11 @@ public class Controller {
         this.orderService = orderService;
     }
 
-    //----------------------------------------------------------------
+    //================================================================
+    // Getting the customer and Adding New Customer...
 
     @GetMapping("/customer")
-    public String getCustomer(@RequestParam Integer id) {
+    public String getCustomer(@RequestParam Integer id) {   // Getting the customer and printing its info... "like sign in"
         customer = customerService.getCustomer(id);
         if (customer == null) {
             return "Customer not found !!!";
@@ -50,29 +51,40 @@ public class Controller {
     }
 
     //----------------------------------------------------------------
-    // Cart, Orders and Products methods...
-    @GetMapping("/viewProducts")
+
+    @PostMapping(value = "/addCustomer")    // Adding a new customer...
+    public String addCustomer(@RequestBody Customer customer) {
+        return customerService.addCustomerAccount(customer);
+    }
+
+    //----------------------------------------------------------------
+    //================================================================
+    // Controlling the Products , Adding Orders & Printing Status of each Order....
+    @GetMapping("/viewProducts")    // View all the available products...
     public String viewProduct() {    // To view all the products...
         return productService.getProducts();
     }
 
-    //-----------------
+    //----------------------------------------------------------------
 
-    @PostMapping("/addSingleOrder")
+    @PostMapping("/addSingleOrder") // Add a single order...
     public String addSingleOrder(@RequestParam Integer productId) {
+        if (customer == null) {
+            return "Please sign in first...";
+        }
         Product product = productService.getProduct(productId);
         if (product == null) {
             return "Product not found !!";
         }
-        Order order = new SingleOrder(customer.getId(), product);
+        Order order = new SingleOrder(customer, product);
         customerService.addOrder(order, customer.getId());
         return "Order added successfully with id : " + order.getOrderId();
     }
 
-    //-----------------
-    @PostMapping("/addCompoundOrder")
+    //-----------------------------------------------
+    @PostMapping("/addCompoundOrder")   // Add A compound Order...
     public String addCompoundOrder(@RequestBody CompoundOrderRequest requestBody) {
-        List<SingleOrder> orders = new ArrayList<>();
+        List<Order> orders = new ArrayList<>();
         for (int i = 0; i < requestBody.getProductIds().size(); i++) {
             Product product = productService.getProduct(requestBody.getProductIds().get(i));
             if (product == null) {
@@ -82,16 +94,16 @@ public class Controller {
             if (tmpCustomer == null) {
                 return "Customer not found for id: " + requestBody.getCustomerIds().get(i);
             }
-            orders.add(new SingleOrder(requestBody.getCustomerIds().get(i), product));
+            orders.add(new SingleOrder(tmpCustomer, product));
         }
-        Order order = new CompoundOrder(customer.getId(), orders);
+        Order order = new CompoundOrder(customer, orders);
         customerService.addOrder(order, customer.getId());
 
         return "Compound Order added successfully with id : " + order.getOrderId();
     }
-    //-----------------
+    //----------------------------------------------------------------
 
-    @GetMapping("/printOrderDetails")
+    @GetMapping("/printOrderDetails")   // Print the order details...
     public String getOrderDetails(@RequestParam Integer orderId) {
         if (customer == null) {
             return "Please Sign In First!!";
@@ -102,27 +114,16 @@ public class Controller {
         }
         return order.print();
     }
+    //================================================================
+    // Order Payment & Shipment
     @PostMapping("/{customerId}/shipOrder/{orderId}")
     public String shipOrder(@PathVariable int customerId, @PathVariable int orderId) {
         return customerService.shiporder(customerId, orderId);
     }
 
     //----------------------------------------------------------------
-    @PostMapping(value = "/AddAccount")
-    public String AddAccount(@RequestBody Customer customer) {
-        String result = customerService.addCustomerAccount(customer);
-        return result;
-    }
+    //================================================================
+    // Notification System & Statistics....
 
-    //----------------------------------------------------------------
-    @GetMapping(value = "/getCustomerAccount/{id}")
-    public String getCustomerAccount(@PathVariable int AccountId) {
-        customer = customerService.getCustomerAccount(AccountId);
-        if (customer == null) {
-            return "Customer Account not found!!!";
-        }
-        return "Welcome " + customer.getName() +
-                "!\nYour current Balance: " + customer.getBalance() +
-                ".\nYour current e-mail: " + customer.getEmail() + ".";
-    }
+
 }
