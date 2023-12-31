@@ -15,7 +15,7 @@ public class NotificationService {
     private final ChannelAndLangFac channelAndLangFac = new ChannelFactory();
     private final List<Channel> NotificationQueue = new ArrayList<>();
 
-    public String createChannel(Customer customer, Order order, NotificationRequest notificationRequest){
+    public String createChannel(Customer customer, Order order, NotificationRequest notificationRequest) throws InterruptedException {
 
         Channel channel = channelAndLangFac.channelCreator(notificationRequest.getTypeOfChannel());
         channel.setName(customer.getName());
@@ -23,6 +23,8 @@ public class NotificationService {
 
 
         NotificationQueue.add(channel);
+//        wait(100);
+        NotificationQueue.remove(0);
         return channel.getMessage();
     }
 }

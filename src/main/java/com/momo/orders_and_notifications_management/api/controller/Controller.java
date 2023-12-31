@@ -158,7 +158,7 @@ public class Controller {
     //================================================================
     // Notification System & Statistics....
     @PostMapping("/notification")
-    public String notification(@RequestBody NotificationRequest notificationRequest){
+    public String notification(@RequestBody NotificationRequest notificationRequest) throws InterruptedException {
         if (customer == null){
             return "Please sign in first...";
         }
