@@ -11,6 +11,9 @@ public class CompoundShipment implements Ship{
         if(compound.getPaymentStatus().equals("unpaid")){
             return "Can't ship an order without being paid";
         }
+        if(compound.getShipmentStatus().equals("Shipped")){
+            return  "Order has been Shipped !!!";
+        }
         List<Order> orders = compound.getOrderList();
         StringBuilder msg= new StringBuilder("Shipping Compound order !! \n");
         double shipmentFees = (double)50/ orders.size();

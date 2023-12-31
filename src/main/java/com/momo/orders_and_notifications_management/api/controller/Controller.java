@@ -131,7 +131,7 @@ public class Controller {
 
     //----------------------------------------------------------------
 
-    @GetMapping("/shiporder")   // Print the order details...
+    @GetMapping("/shipOrder")   // Print the order details...
     public String ShopOrder(@RequestParam Integer orderId) {
         if (customer == null) {
             return "Please Sign In First!!";

@@ -6,6 +6,9 @@ import com.momo.orders_and_notifications_management.api.model.order.Order;
 public class SingleShipment implements Ship{
     @Override
     public String ship(Order single) {
+        if(single.getShipmentStatus().equals("Shipped")){
+            return  "Order has been Shipped !!!";
+        }
         if(single.getPaymentStatus().equals("unpaid")){
             return "Can't ship an order without being paid";
         }
