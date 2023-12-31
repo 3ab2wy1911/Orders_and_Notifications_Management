@@ -36,37 +36,37 @@ public class Controller {
     //----------------------------------------------------------------
 
     @GetMapping("/customer")
-    public String getCustomer(@RequestParam Integer id){
-        customer =  customerService.getCustomer(id);
-        if(customer == null){
+    public String getCustomer(@RequestParam Integer id) {
+        customer = customerService.getCustomer(id);
+        if (customer == null) {
             return "Customer not found !!!";
         }
         return ("Welcome " + customer.getName() +
                 "!\nYour current Balance: " + customer.getBalance()
-                + ".\nYour current Address: "+ customer.getAddress()
-                + ".\nYour current e-mail: "+ customer.getEmail()
-                + ".\nYour current Phone Number : "+ customer.getPhoneNumber()
-        + ".");
+                + ".\nYour current Address: " + customer.getAddress()
+                + ".\nYour current e-mail: " + customer.getEmail()
+                + ".\nYour current Phone Number : " + customer.getPhoneNumber()
+                + ".");
     }
 
     //----------------------------------------------------------------
     // Cart, Orders and Products methods...
     @GetMapping("/viewProducts")
-    public String viewProduct(){    // To view all the products...
+    public String viewProduct() {    // To view all the products...
         return productService.getProducts();
     }
 
     //-----------------
 
     @PostMapping("/addSingleOrder")
-    public String addSingleOrder(@RequestParam Integer productId){
+    public String addSingleOrder(@RequestParam Integer productId) {
         Product product = productService.getProduct(productId);
-        if(product == null){
+        if (product == null) {
             return "Product not found !!";
         }
-        Order order = new SingleOrder(customer.getId(),product);
+        Order order = new SingleOrder(customer.getId(), product);
         customerService.addOrder(order, customer.getId());
-        return "Order added successfully with id : "+ order.getOrderId();
+        return "Order added successfully with id : " + order.getOrderId();
     }
 
     //-----------------
@@ -79,10 +79,10 @@ public class Controller {
                 return "Product not found for id: " + requestBody.getProductIds().get(i);
             }
             Customer tmpCustomer = customerService.getCustomer(requestBody.getCustomerIds().get(i));
-            if(tmpCustomer == null) {
+            if (tmpCustomer == null) {
                 return "Customer not found for id: " + requestBody.getCustomerIds().get(i);
             }
-            orders.add(new SingleOrder(requestBody.getCustomerIds().get(i),product));
+            orders.add(new SingleOrder(requestBody.getCustomerIds().get(i), product));
         }
         Order order = new CompoundOrder(customer.getId(), orders);
         customerService.addOrder(order, customer.getId());
@@ -92,18 +92,33 @@ public class Controller {
     //-----------------
 
     @GetMapping("/printOrderDetails")
-    public String getOrderDetails(@RequestParam Integer orderId){
-        if (customer == null){
+    public String getOrderDetails(@RequestParam Integer orderId) {
+        if (customer == null) {
             return "Please Sign In First!!";
         }
         Order order = customerService.getOrder(customer.getId(), orderId);
-        if(order == null){
+        if (order == null) {
             return "Order not found";
         }
         return order.print();
     }
 
-    //-----------------
+    //----------------------------------------------------------------
+    @PostMapping(value = "/AddAccount")
+    public String AddAccount(@RequestBody Customer customer) {
+        String result = customerService.addCustomerAccount(customer);
+        return result;
+    }
 
-
+    //----------------------------------------------------------------
+    @GetMapping(value = "/getCustomerAccount/{id}")
+    public String getCustomerAccount(@PathVariable int AccountId) {
+        customer = customerService.getCustomerAccount(AccountId);
+        if (customer == null) {
+            return "Customer Account not found!!!";
+        }
+        return "Welcome " + customer.getName() +
+                "!\nYour current Balance: " + customer.getBalance() +
+                ".\nYour current e-mail: " + customer.getEmail() + ".";
+    }
 }
