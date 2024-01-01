@@ -1,6 +1,6 @@
 # Orders and Notifications Management System
 
-![Java](https://img.shields.io/badge/Java-11-orange?style=flat&logo=java)
+![Java](https://img.shields.io/badge/Java-21-orange?style=flat&logo=java)
 ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-2.5.4-green?style=flat&logo=spring)
 ![License](https://img.shields.io/badge/license-FCAI-blue?style=flat)
 
